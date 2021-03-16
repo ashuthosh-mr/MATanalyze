@@ -20,8 +20,8 @@ def rowwise():
         perutil = 100
         totalmul = nnz * N
         latency = totalmul/(perutil*mul)
-    print("the total latency is %d", latency )
-    print("memory needed for storing partial sum is %d KB",(N*itera*4)/1000)
+    print("the total latency is", latency )
+    print("memory needed for storing partial sum is",(N*itera*4)/1000,"KB")
 #-------------colwise-------------------#
 def colwise():
     itera = mul/(K/nnz)
@@ -40,8 +40,8 @@ def colwise():
         perutil = 100
         totalmul = (K/nnz) * N * K
         latency = totalmul/(perutil*mul)
-    print("the total latency is %d", latency )
-    print("memory needed for storing partial sum is %d KB",(M*itera*4)/1000)
+    print("the total latency is", latency )
+    print("memory needed for storing partial sum is",(M*itera*4)/1000,"KB")
 
 #----------------------inner------------------#
 def inner():
@@ -60,7 +60,7 @@ def inner():
         perutil = 100
         totalmul = M * N * K
         latency = totalmul/(perutil*mul)
-    print("the total latency is %d", latency )
+    print("the total latency is", latency )
     print("memory needed for storing partial sum is < 1 KB")
 
 #----------------------outer--------------------#
@@ -81,8 +81,8 @@ def outer():
         perutil = 100
         totalmul = M * N * K
         latency = totalmul/(perutil*mul)
-    print("the total latency is %d", latency )
-    print("memory needed for storing partial sum is %d KB",(N*M*4)/1000)
+    print("the total latency is", latency )
+    print("memory needed for storing partial sum is",(N*M*4)/1000, "KB")
 
 #--------------------------------------------------------#
 options = {"rw" : rowwise,
