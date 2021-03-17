@@ -1,27 +1,31 @@
 #------------------------initialization----------------------#
 from __main__ import *
-
+print("\t \t MAPPARAT \t \t")
 #-----------------rowwise------------------------------------------#
 def rowwise():
     itera = mul/N
-    check = (bw*N)/N
-    if check==itera:
+
+    if bw==itera:
         print("memory bound = compute bound")
-        perutil = 100
+        perutil = 1
         totalmul = nnz * N
-        latency = totalmul/(perutil*mul)
-    elif check<itera:
+        latency = totalmul/(perutil*mul) + 1
+    elif bw<itera:
         print("memory bound")
-        perutil = ((check*N)/mul)*100
-        totalmul = nnz * N
-        latency = totalmul/(perutil*mul)
+        perutil = ((bw*N)/mul)
+        latency = nnz/bw
     else:
         print("compute bound")
-        perutil = 100
+        perutil = 1
         totalmul = nnz * N
         latency = totalmul/(perutil*mul)
+        check = ((bw-itera) * nnz )/bw
+    	#print("memory needed since it is compute bound",(check*4)/1000 +"KB")
+    print("% utilization", perutil*100,"%")
     print("the total latency is", latency )
-    print("memory needed for storing partial sum is",(N*itera*4)/1000,"KB")
+
+    print("memory needed for storing partial sum is",(N*4)/1000,"KB")
+
 #-------------colwise-------------------#
 def colwise():
     itera = mul/(K/nnz)
